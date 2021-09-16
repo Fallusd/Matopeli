@@ -65,6 +65,14 @@ class mato(object):
         self.suuntax = 0
         self.suuntay = 1
 
+    def getValit(self, leveys, rivit):
+        valit = leveys // rivit
+        return valit
+
+    def getSijainti(self):
+        sijainti = self.body[0]
+        return sijainti.sijainti
+
 #metodi madon liikkumiselle ja ohjaamiselle   
     def liiku(self):
 
@@ -233,7 +241,7 @@ def main():
     win = pygame.display.set_mode((leveys, leveys))
     m = mato((vihrea), (8,8))
     herkku = palikka(randomHerkku(rivit, m), vari = (oranssi))
-    lippu = True
+    lippu = False
 
     clock = pygame.time.Clock()
 
@@ -249,7 +257,7 @@ def main():
 
         for x in range(len(m.body)):
             if m.body[x].sijainti in list(map(lambda z:z.sijainti, m.body[x+1:])):
-                print('Score: ', len(m.body))
+                print('Tulos: ', len(m.body))
                 ilmoitus('Hävisit', 'Pelaa uudelleen')
                 m.reset((10, 10))
                 break
